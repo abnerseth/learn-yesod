@@ -13,7 +13,7 @@
               learnYesod = hfinal.callCabal2nix "learn-yesod" ./. { };
             };
         };
-        PKGNAME = final.haskell.lib.compose.justStaticExecutables final.haskellPackages.learnYesod;
+        learnYesod = final.haskell.lib.compose.justStaticExecutables final.haskellPackages.learnYesod;
       };
       perSystem = system:
         let
