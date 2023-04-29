@@ -17,8 +17,20 @@
       };
       perSystem = system:
         let
-          pkgs = import inputs.nixpkgs { inherit system; overlays = [ overlay ]; };
+          pkgs = import inputs.nixpkgs { inherit system; overlays = [ overlay ]; config = { allowUnfree = true; };}; # config = { allowUnfree = true; };
           hspkgs = pkgs.haskellPackages;
+          vscodiumWithExtensions = (pkgs.vscode-with-extensions.override {
+            vscode = pkgs.vscodium;
+            vscodeExtensions = with pkgs.vscode-extensions; [
+              asvetliakov.vscode-neovim
+              dracula-theme.theme-dracula
+              haskell.haskell
+              jnoortheen.nix-ide
+              justusadam.language-haskell
+              mkhl.direnv
+            ];
+            }
+          );
         in
         {
           devShell = hspkgs.shellFor {
@@ -31,6 +43,7 @@
               hspkgs.ormolu
               pkgs.bashInteractive
               pkgs.zlib
+              vscodiumWithExtensions
             ];
           };
           defaultPackage = pkgs.learnYesod;
