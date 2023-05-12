@@ -2,7 +2,7 @@
   "haskell.manageHLS": "PATH",
   "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "vs-seti",
-  "window.zoomLevel": 1.4,
+  "window.zoomLevel": 5,
   "editor.renderWhitespace": "all",
   "editor.formatOnSave": true,
 }
